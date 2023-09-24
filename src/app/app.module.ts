@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -18,9 +19,10 @@ import { YearInputComponent } from './components/year-input/year-input.component
     YearInputComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

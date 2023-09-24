@@ -1,4 +1,26 @@
-<div class="movie-list-container">
-  <year-input></year-input>
-  <custom-button></custom-button>
+<div class="m-auto flex flex-col w-3/6 mt-4">
+  <div class="w-full flex justify-center space-x-2 m-auto">
+    <year-input [placeholder]="yearInputPlaceholder" [onChange]="handleChangeActiveYear"></year-input>
+    <custom-button [label]="searchButtonLabel" [onClick]="handleSearch" />
+  </div>
+  
+  <div *ngIf="movieResults; else renderInitialResults">
+    <div *ngIf="movieResults.length; then renderResults else renderNoResults"></div>
+  </div>
+  
+  <ng-template #renderResults>
+    <div class="text-center my-4">
+      <ul data-test-id="movieList" *ngFor="let movie of movieResults; index as i">
+        <li>{{ movie.Title }}</li>
+      </ul>
+    </div>
+  </ng-template>
+  
+  <ng-template #renderNoResults>
+    <div data-test-id="no-result">
+      No Results Found
+    </div>
+  </ng-template>
+  
+  <ng-template #renderInitialResults></ng-template>
 </div>
